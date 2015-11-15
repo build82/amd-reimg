@@ -1,6 +1,12 @@
-# reimg
-reimg - A javascript library for converting image formats 
-This can convert : 
+# reimg (amd)
+reimg - A JavaScript library for converting image formats (AMD module)
+
+This lightweight image transformation module preforms common image conversions. 
+Also, the module facilitates client retrieval of image elements.
+All operations were coded upstream (& formatted as an AMD module in this fork f
+or use in supporting JavaScript frameworks.
+
+supported conversions : 
 * svg -> base64
 * svg -> canvas
 * svg -> html `<img/>` element
@@ -9,30 +15,32 @@ This can convert :
 * canvas -> html `<img/>` element
 * canvas -> png
 
+<br/>
 
-I needed to do this transformations a few times in the past, and got tired of looking them up.  
-Most of the solutions I found were either more complicated, or they required heavy 3rd party libraries or frameworks.   
-This is a very lightweight solution, and very simple to follow.  
-<br/><br/>
-
-Just include this library in your html code :
+include the module :
 ```html
-<script src="reimg.js"></script>
+<script>
+	require(['build82/reimg'], function(reimg) {
+		...
+	});
+</script>
 ```
-<br/><br/>
-Here are some examples on how to use it :
+
+<br/>
+
+example :
 ```javascript
-// convert svg element to img element
-var img = ReImg.fromSvg(document.querySelector('svg')).toImg();
-// now 'img' is the img element created
+<script>
+	require(['build82/reimg', 'dojo/dom', 'dojo/domReady!'], function(dom, reimg) {
+		// convert svg element to png
+		var svg_png = reimg.fromSvg(dom.byId('svg_element_id')).toPng();
 
-// convert svg element to png
-var png = ReImg.fromSvg(document.getElementById('svg-element-id')).toPng();
+		// convert canvas to png
+		var canvas_png = reimg.fromCanvas(document.getElementByID('canvas_id')).toPng();
 
-// force client download of svg as png image
-ReImg.fromSvg(document.querySelector('svg')).downloadPng();
-
-// convert canvas to png
-var png = ReImg.fromSvg(document.getElementByID('canvasId')).toPng();
+		// client download of canvas as png image
+		reimg.fromCanvas(document.getElementByID('canvas_id')).downloadPng();
+	});
+</script>
 ```
 
