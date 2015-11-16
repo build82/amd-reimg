@@ -29,17 +29,17 @@ include the module :
 <br/>
 
 example :
-```javascript
+```html
 <script>
 	require(['build82/reimg', 'dojo/dom', 'dojo/domReady!'], function(dom, reimg) {
 		// convert svg element to png
 		var svg_png = reimg.fromSvg(dom.byId('svg_element_id')).toPng();
 
 		// convert canvas to png
-		var canvas_png = reimg.fromCanvas(document.getElementByID('canvas_id')).toPng();
+		var canvas_png = reimg.fromCanvas(dom.byId('canvas_id')).toPng();
 
 		// client download of canvas as png image
-		reimg.fromCanvas(document.getElementByID('canvas_id')).downloadPng();
+		reimg.fromCanvas(dom.byId('canvas_id')).downloadPng();
 	});
 </script>
 ```
